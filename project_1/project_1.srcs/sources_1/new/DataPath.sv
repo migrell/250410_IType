@@ -1,5 +1,4 @@
 `timescale 1ns / 1ps
-
 `include "defines.sv"
 
 module DataPath (
@@ -22,9 +21,21 @@ module DataPath (
     logic [31:0] PCSrcData, PCOutData;
     logic [31:0] immExt, aluSrcMuxOut, RFWDSrcMuxOut;
 
+    logic branchTaken;
+    logic [31:0] pcBranchTarget;
+
     assign instrMemAddr = PCOutData;
     assign dataAddr     = aluResult;
     assign dataWData    = RFData2;
+    assign pcBranchTarget = PCOutData + immExt;
+
+    // PC selection logic with branch control
+    always_comb begin
+        if (aluControl inside {`BEQ, `BNE, `BLT, `BGE, `BLTU, `BGEU} && branchTaken)
+            PCSrcData = pcBranchTarget;
+        else
+            PCSrcData = PCOutData + 32'd4;
+    end
 
     RegisterFile U_RegFile (
         .clk(clk),
@@ -58,6 +69,13 @@ module DataPath (
         .result(aluResult)
     );
 
+    BranchComparator U_BranchComparator (
+        .aluControl(aluControl),
+        .a(RFData1),
+        .b(RFData2),
+        .branchTaken(branchTaken)
+    );
+
     extend U_ImmExtend (
         .instrCode(instrCode),
         .immExt(immExt)
@@ -69,19 +87,11 @@ module DataPath (
         .d(PCSrcData),
         .q(PCOutData)
     );
-
-    adder U_PC_Adder (
-        .a(32'd4),
-        .b(PCOutData),
-        .y(PCSrcData)
-    );
-
-
 endmodule
 
 
 module alu (
-    input  logic [ 1:0] aluControl,
+    input  logic [ 3:0] aluControl,
     input  logic [31:0] a,
     input  logic [31:0] b,
     output logic [31:0] result
@@ -103,25 +113,39 @@ module alu (
     end
 endmodule
 
+
+module BranchComparator (
+    input  logic [ 3:0] aluControl,
+    input  logic [31:0] a,
+    input  logic [31:0] b,
+    output logic        branchTaken
+);
+    always_comb begin
+        case (aluControl)
+            `BEQ:  branchTaken = (a == b);
+            `BNE:  branchTaken = (a != b);
+            `BLT:  branchTaken = ($signed(a) < $signed(b));
+            `BGE:  branchTaken = ($signed(a) >= $signed(b));
+            `BLTU: branchTaken = (a < b);
+            `BGEU: branchTaken = (a >= b);
+            default: branchTaken = 1'b0;
+        endcase
+    end
+endmodule
+
+
 module register (
     input  logic        clk,
     input  logic        reset,
     input  logic [31:0] d,
     output logic [31:0] q
 );
-    always_ff @(posedge clk, posedge reset) begin
+    always_ff @(posedge clk or posedge reset) begin
         if (reset) q <= 0;
         else q <= d;
     end
 endmodule
 
-module adder (
-    input  logic [31:0] a,
-    input  logic [31:0] b,
-    output logic [31:0] y
-);
-    assign y = a + b;
-endmodule
 
 module RegisterFile (
     input  logic        clk,
@@ -133,7 +157,8 @@ module RegisterFile (
     output logic [31:0] RData1,
     output logic [31:0] RData2
 );
-    logic [31:0] RegFile[0:2**5-1];
+    logic [31:0] RegFile[0:31];
+
     initial begin
         for (int i = 0; i < 32; i++) begin
             RegFile[i] = 10 + i;
@@ -147,6 +172,7 @@ module RegisterFile (
     assign RData1 = (RAddr1 != 0) ? RegFile[RAddr1] : 32'b0;
     assign RData2 = (RAddr2 != 0) ? RegFile[RAddr2] : 32'b0;
 endmodule
+
 
 module mux_2x1 (
     input  logic        sel,
@@ -163,19 +189,32 @@ module mux_2x1 (
     end
 endmodule
 
+
 module extend (
     input  logic [31:0] instrCode,
     output logic [31:0] immExt
 );
     wire [6:0] opcode = instrCode[6:0];
-
+    wire [2:0] func3 = instrCode[14:12];
+    
     always_comb begin
         immExt = 32'bx;
         case (opcode)
             `OP_TYPE_R: immExt = 32'bx;
             `OP_TYPE_L: immExt = {{20{instrCode[31]}}, instrCode[31:20]};
             `OP_TYPE_S:
-            immExt = {{20{instrCode[31]}}, instrCode[31:25], instrCode[11:7]};
+                immExt = {{20{instrCode[31]}}, instrCode[31:25], instrCode[11:7]};
+            `OP_TYPE_I: begin
+                case (func3)
+                    3'b001: immExt = {27'b0, instrCode[24:20]};
+                    3'b101: immExt = {27'b0, instrCode[24:20]};
+                    3'b011: immExt = {20'b0, instrCode[31:20]};
+                    default: immExt = {{20{instrCode[31]}}, instrCode[31:20]};
+                endcase
+            end
+            `OP_TYPE_B: begin
+                immExt = {{20{instrCode[31]}}, instrCode[7], instrCode[30:25], instrCode[11:8], 1'b0};
+            end
             default: immExt = 32'bx;
         endcase
     end
