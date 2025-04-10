@@ -1,0 +1,166 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Apr 10 12:26:04 2025
+# Process ID: 6744
+# Current directory: C:/Users/kccistc/Desktop/250410_IType/project_1
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent18824 C:\Users\kccistc\Desktop\250410_IType\project_1\project_1.xpr
+# Log file: C:/Users/kccistc/Desktop/250410_IType/project_1/vivado.log
+# Journal file: C:/Users/kccistc/Desktop/250410_IType/project_1\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2020.2/data/ip'.
+update_compile_order -fileset sources_1
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_RV32I' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -L uvm -prj tb_RV32I_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.srcs/sources_1/new/ControlUnit.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ControlUnit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.srcs/sources_1/new/DataPath.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module DataPath
+INFO: [VRFC 10-311] analyzing module alu
+INFO: [VRFC 10-311] analyzing module BranchComparator
+INFO: [VRFC 10-311] analyzing module register
+INFO: [VRFC 10-311] analyzing module RegisterFile
+INFO: [VRFC 10-311] analyzing module mux_2x1
+INFO: [VRFC 10-311] analyzing module extend
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.srcs/sources_1/new/MCU.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MCU
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.srcs/sources_1/new/RV32I_Core.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RV32I_Core
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.srcs/sources_1/new/ram.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ram
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.srcs/sources_1/new/rom.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module rom
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/tb_RV32I.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_RV32I
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/sim_1/behav/xsim'
+"xelab -wto 350d608c8acf42588db9849116287fa8 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_RV32I_behav xil_defaultlib.tb_RV32I xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 350d608c8acf42588db9849116287fa8 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_RV32I_behav xil_defaultlib.tb_RV32I xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.ControlUnit
+Compiling module xil_defaultlib.RegisterFile
+Compiling module xil_defaultlib.mux_2x1
+Compiling module xil_defaultlib.alu
+Compiling module xil_defaultlib.BranchComparator
+Compiling module xil_defaultlib.extend
+Compiling module xil_defaultlib.register
+Compiling module xil_defaultlib.DataPath
+Compiling module xil_defaultlib.RV32I_Core
+Compiling module xil_defaultlib.rom
+Compiling module xil_defaultlib.ram
+Compiling module xil_defaultlib.MCU
+Compiling module xil_defaultlib.tb_RV32I
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot tb_RV32I_behav
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "tb_RV32I_behav -key {Behavioral:sim_1:Functional:tb_RV32I} -tclbatch {tb_RV32I.tcl} -view {C:/Users/kccistc/Desktop/250410_IType/project_1/tb_RV32I_behav.wcfg} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+open_wave_config C:/Users/kccistc/Desktop/250410_IType/project_1/tb_RV32I_behav.wcfg
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_ControlUnit/instrCode was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_ControlUnit/regFileWe was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_ControlUnit/aluControl was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_ControlUnit/aluSrcMuxSel was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_ControlUnit/dataWe was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_ControlUnit/RFWDSrcMuxSel was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_ControlUnit/opcode was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_ControlUnit/operators was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_ControlUnit/signals was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/clk was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/reset was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/regFileWe was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/aluControl was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/aluSrcMuxSel was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/RFWDSrcMuxSel was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/instrMemAddr was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/instrCode was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/dataAddr was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/dataWData was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/dataRData was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/aluResult was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/RFData1 was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/RFData2 was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/PCSrcData was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/PCOutData was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/immExt was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/aluSrcMuxOut was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/RFWDSrcMuxOut was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/branchTaken was not found in the design.
+WARNING: Simulation object /tb_RV32I/DUT/U_Core/U_DataPath/pcBranchTarget was not found in the design.
+source tb_RV32I.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+$finish called at time : 110 ns : File "C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/tb_RV32I.sv" Line 68
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'tb_RV32I_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:07 ; elapsed = 00:00:05 . Memory (MB): peak = 1104.492 ; gain = 0.000
+relaunch_sim
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'tb_RV32I' in fileset 'sim_1'...
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in 'C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/sim_1/behav/xsim'
+"xvlog --incr --relax -L uvm -prj tb_RV32I_vlog.prj"
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+Command: launch_simulation -simset sim_1 -mode behavioral
+INFO: [Vivado 12-5682] Launching behavioral simulation in 'C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/sim_1/behav/xsim'
+"xelab -wto 350d608c8acf42588db9849116287fa8 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_RV32I_behav xil_defaultlib.tb_RV32I xil_defaultlib.glbl -log elaborate.log"
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: C:/Xilinx/Vivado/2020.2/bin/unwrapped/win64.o/xelab.exe -wto 350d608c8acf42588db9849116287fa8 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_RV32I_behav xil_defaultlib.tb_RV32I xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+$finish called at time : 110 ns : File "C:/Users/kccistc/Desktop/250410_IType/project_1/project_1.sim/tb_RV32I.sv" Line 68
+relaunch_sim: Time (s): cpu = 00:00:02 ; elapsed = 00:00:06 . Memory (MB): peak = 1104.492 ; gain = 0.000
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+INFO: [Common 17-206] Exiting Vivado at Thu Apr 10 12:30:30 2025...
